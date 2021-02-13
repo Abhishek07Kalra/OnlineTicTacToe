@@ -265,7 +265,10 @@ class ThirdPage : AppCompatActivity() {
             textView.text = "Player1 : $player1Count"
             textView2.text = "Player2 : $player2Count"
             isMyMove = isCodeMaker
-            //FirebaseDatabase.getInstance().reference.child("data").child("Abhi").removeValue()
+            if(isMyMove){
+                FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+            }
+
 
         }
     }
