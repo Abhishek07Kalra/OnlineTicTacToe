@@ -13,7 +13,7 @@ class CodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_code)
         Create.setOnClickListener{
             code = GameCode.text.toString()
-            if(code != "null" ) {
+            if(code != "null" && code != null && code != "") {
 
                 isCodeMaker = true;
                 startActivity(Intent(this, ThirdPage::class.java));

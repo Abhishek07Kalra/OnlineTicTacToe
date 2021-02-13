@@ -43,17 +43,19 @@ class ThirdPage : AppCompatActivity() {
                 var data = snapshot.value
                 if(isMyMove==true){
                     isMyMove = false
+                    moveonline(data.toString() , isMyMove)
                 }
                 else{
                     isMyMove = true
+                    moveonline(data.toString() , isMyMove)
                 }
-                moveonline(data.toString() , isMyMove)
+
 
 
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+                //Do nothing
             }
 
         })
@@ -106,10 +108,11 @@ class ThirdPage : AppCompatActivity() {
             //Handler().postDelayed(Runnable { audio.pause() } , 500)
             buttonSelected.isEnabled = false
             Handler().postDelayed(Runnable { audio.release() } , 200)
-            val checkWinner = checkwinner()
+            checkwinner()
+            /*val checkWinner = checkwinner()
             if(checkWinner == 1) {
                 Handler().postDelayed(Runnable { reset() }, 2000)
-            }
+            }*/
 
         /*else
         {
@@ -132,7 +135,7 @@ class ThirdPage : AppCompatActivity() {
     fun moveonline(data : String , move : Boolean){
         val audio = MediaPlayer.create(this , R.raw.poutch)
 
-        if(move==true) {
+        if(move) {
             var buttonselected: Button?
             buttonselected = when (data.toInt()) {
                 1 -> button11
@@ -157,9 +160,7 @@ class ThirdPage : AppCompatActivity() {
             //Handler().postDelayed(Runnable { audio.pause() } , 500)
             Handler().postDelayed(Runnable { audio.release() } , 200)
             buttonselected.isEnabled = false
-            val checkWinner  = checkwinner()
-            if(checkWinner == 1)
-                Handler().postDelayed(Runnable { reset() } , 4000)
+            checkwinner()
         }
     }
 
@@ -265,7 +266,8 @@ class ThirdPage : AppCompatActivity() {
             textView.text = "Player1 : $player1Count"
             textView2.text = "Player2 : $player2Count"
             isMyMove = isCodeMaker
-            if(isMyMove){
+            //startActivity(Intent(this,ThirdPage::class.java))
+            if(isCodeMaker){
                 FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
             }
 
