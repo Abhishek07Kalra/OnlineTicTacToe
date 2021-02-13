@@ -18,13 +18,14 @@
       <change beforePath="$PROJECT_DIR$/app/release/tc.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tictactoeapp/CodeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tictactoeapp/CodeActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tictactoeapp/ThirdPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tictactoeapp/ThirdPage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_code.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_2_API_25]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -182,29 +183,29 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="560" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1612865369630">
+    <state x="560" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1613244521941">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="560" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1612865369630" />
+    <state x="560" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1613244521941" />
     <state x="481" y="165" key="FileChooserDialogImpl" timestamp="1612940801824">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="481" y="165" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1612940801824" />
-    <state width="1491" height="213" key="GridCell.Tab.0.bottom" timestamp="1613211420414">
+    <state width="1491" height="521" key="GridCell.Tab.0.bottom" timestamp="1613246123356">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1491" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1613211420414" />
-    <state width="1491" height="213" key="GridCell.Tab.0.center" timestamp="1613211420413">
+    <state width="1491" height="521" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1613246123356" />
+    <state width="1491" height="521" key="GridCell.Tab.0.center" timestamp="1613246123356">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1491" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1613211420413" />
-    <state width="1491" height="213" key="GridCell.Tab.0.left" timestamp="1613211420413">
+    <state width="1491" height="521" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1613246123356" />
+    <state width="1491" height="521" key="GridCell.Tab.0.left" timestamp="1613246123356">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1491" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1613211420413" />
-    <state width="1491" height="213" key="GridCell.Tab.0.right" timestamp="1613211420414">
+    <state width="1491" height="521" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1613246123356" />
+    <state width="1491" height="521" key="GridCell.Tab.0.right" timestamp="1613246123356">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1491" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1613211420414" />
+    <state width="1491" height="521" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1613246123356" />
   </component>
 </project>

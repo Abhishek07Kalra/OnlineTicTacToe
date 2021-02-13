@@ -2,38 +2,153 @@ package com.example.tictactoeapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_code.*
-
+import com.google.firebase.database.*
 var isCodeMaker = true;
 var code = "null";
+var codeFound = false
+var checkTemp = true
 class CodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code)
         Create.setOnClickListener{
             code = GameCode.text.toString()
+            Create.visibility = View.GONE
+            Join.visibility = View.GONE
+            GameCode.visibility = View.GONE
+            textView4.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
             if(code != "null" && code != null && code != "") {
 
                 isCodeMaker = true;
-                startActivity(Intent(this, ThirdPage::class.java));
+                FirebaseDatabase.getInstance().reference.child("codes").addValueEventListener(object  :ValueEventListener{
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                            var check = isValueAvailable(snapshot , code)
+
+                            Handler().postDelayed({
+                                checkTemp = check
+                                if(check == true) {
+                                    Create.visibility = View.VISIBLE
+                                    Join.visibility = View.VISIBLE
+                                    GameCode.visibility = View.VISIBLE
+                                    textView4.visibility = View.VISIBLE
+                                    progressBar.visibility = View.GONE
+                                }
+                                else{
+                                    FirebaseDatabase.getInstance().reference.child("codes").push().setValue(code)
+                                    Handler().postDelayed({accepted()} , 500)
+                                }
+                            }, 2000)
+
+
+
+                    }
+
+                })
+                Handler().postDelayed({
+                    if(checkTemp == true)
+                    errorMsg("Code Already Exist")
+                },4000)
             }
             else
             {
-                Toast.makeText(this , "Enter Code Properly" , Toast.LENGTH_SHORT).show();
+                Create.visibility = View.VISIBLE
+                Join.visibility = View.VISIBLE
+                GameCode.visibility = View.VISIBLE
+                textView4.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+                errorMsg("Enter Code Properly")
             }
         }
         Join.setOnClickListener{
             code = GameCode.text.toString()
-            if(code != "null" ) {
+            Create.visibility = View.GONE
+            Join.visibility = View.GONE
+            GameCode.visibility = View.GONE
+            textView4.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            if(code != "null" && code != null && code != "") {
                 isCodeMaker = false;
-                startActivity(Intent(this, ThirdPage::class.java));
+                FirebaseDatabase.getInstance().reference.child("codes").addValueEventListener(object:ValueEventListener{
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var data:Boolean = isValueAvailable(snapshot , code)
+
+                            Handler().postDelayed({
+                                if(data == true) {
+                                    codeFound = true
+                                    accepted()
+                                    Create.visibility = View.VISIBLE
+                                    Join.visibility = View.VISIBLE
+                                    GameCode.visibility = View.VISIBLE
+                                    textView4.visibility = View.VISIBLE
+                                    progressBar.visibility = View.GONE
+                                }
+                            } , 3000)
+
+
+                    }
+
+
+                })
+                Handler().postDelayed({
+                    if(codeFound == false){
+                        Create.visibility = View.VISIBLE
+                        Join.visibility = View.VISIBLE
+                        GameCode.visibility = View.VISIBLE
+                        textView4.visibility = View.VISIBLE
+                        progressBar.visibility = View.GONE
+                        errorMsg("Invalid Code")
+                    }
+                    else{
+                        codeFound = false
+                    }
+                },4000)
+
+
             }
             else
             {
-                Toast.makeText(this , "Enter Code Properly" , Toast.LENGTH_SHORT).show();
+                errorMsg("Enter Code Properly")
             }
         }
 
+    }
+
+    fun accepted() {
+        startActivity(Intent(this, ThirdPage::class.java));
+        Create.visibility = View.VISIBLE
+        Join.visibility = View.VISIBLE
+        GameCode.visibility = View.VISIBLE
+        textView4.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        
+    }
+
+    fun errorMsg(value : String){
+        Toast.makeText(this , value  , Toast.LENGTH_SHORT).show()
+    }
+
+    fun isValueAvailable(snapshot: DataSnapshot , code : String): Boolean {
+        var data = snapshot.children
+        data.forEach{
+            var value = it.getValue().toString()
+            if(value == code)
+            {
+                return true;
+            }
+        }
+        return false
     }
 }
