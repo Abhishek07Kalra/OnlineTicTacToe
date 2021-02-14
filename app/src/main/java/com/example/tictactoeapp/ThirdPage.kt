@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_third_page.*
 import kotlin.collections.ArrayList
@@ -55,7 +56,8 @@ class ThirdPage : AppCompatActivity() {
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                //Do nothing
+                reset()
+                errorMsg("Game Reset")
             }
 
         })
@@ -190,6 +192,7 @@ class ThirdPage : AppCompatActivity() {
             }
             build.setNegativeButton("Exit") { dialog, which ->
                 audio.release()
+                removeCode()
                 exitProcess(1)
 
             }
@@ -216,6 +219,7 @@ class ThirdPage : AppCompatActivity() {
             }
             build.setNegativeButton("Exit"){dialog, which ->
                 audio.release()
+                removeCode()
                 exitProcess(1)
             }
             Handler().postDelayed(Runnable { build.show() } , 2000)
@@ -228,10 +232,13 @@ class ThirdPage : AppCompatActivity() {
             build.setTitle("Game Draw")
             build.setMessage("Nobody Wins" + "\n\n" + "Do you want to play again")
             build.setPositiveButton("Ok"){dialog, which ->
+                audio.release()
                 reset()
             }
             build.setNegativeButton("Exit"){dialog, which ->
+                audio.release()
                 exitProcess(1)
+                removeCode()
             }
             build.show()
             return 1
@@ -318,10 +325,26 @@ class ThirdPage : AppCompatActivity() {
         }
     }
 
+    fun removeCode(){
+        if(isCodeMaker){
+            FirebaseDatabase.getInstance().reference.child("codes").child(keyValue).removeValue()
+        }
+    }
 
+    fun errorMsg(value : String){
+        Toast.makeText(this , value  , Toast.LENGTH_SHORT).show()
+    }
     fun disableReset()
     {
         button110.isEnabled = false
         Handler().postDelayed(Runnable { button110.isEnabled = true } , 2200)
+    }
+
+    override fun onBackPressed() {
+        removeCode()
+        if(isCodeMaker){
+            FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+        }
+        exitProcess(0)
     }
 }

@@ -25,7 +25,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_2_API_25]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,13 +78,13 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.1986025609">
+    <key name="android.template.1007062279">
       <recent name="com.example.tictactoeapp" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.example.tictactoeapp" />
     </key>
-    <key name="android.template.1007062279">
+    <key name="android.template.1986025609">
       <recent name="com.example.tictactoeapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

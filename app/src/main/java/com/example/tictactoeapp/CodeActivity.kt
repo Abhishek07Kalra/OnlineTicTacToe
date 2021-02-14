@@ -11,11 +11,16 @@ var isCodeMaker = true;
 var code = "null";
 var codeFound = false
 var checkTemp = true
+var keyValue:String = "null"
 class CodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code)
         Create.setOnClickListener{
+            code = "null";
+            codeFound = false
+            checkTemp = true
+            keyValue= "null"
             code = GameCode.text.toString()
             Create.visibility = View.GONE
             Join.visibility = View.GONE
@@ -34,17 +39,23 @@ class CodeActivity : AppCompatActivity() {
                             var check = isValueAvailable(snapshot , code)
 
                             Handler().postDelayed({
-                                checkTemp = check
                                 if(check == true) {
                                     Create.visibility = View.VISIBLE
                                     Join.visibility = View.VISIBLE
                                     GameCode.visibility = View.VISIBLE
                                     textView4.visibility = View.VISIBLE
                                     progressBar.visibility = View.GONE
+
                                 }
                                 else{
                                     FirebaseDatabase.getInstance().reference.child("codes").push().setValue(code)
-                                    Handler().postDelayed({accepted()} , 500)
+                                    isValueAvailable(snapshot,code)
+                                    checkTemp = false
+                                    Handler().postDelayed({
+                                        accepted()
+                                        errorMsg("Please don't go back")
+                                    } , 300)
+
                                 }
                             }, 2000)
 
@@ -53,10 +64,6 @@ class CodeActivity : AppCompatActivity() {
                     }
 
                 })
-                Handler().postDelayed({
-                    if(checkTemp == true)
-                    errorMsg("Code Already Exist")
-                },4000)
             }
             else
             {
@@ -69,6 +76,10 @@ class CodeActivity : AppCompatActivity() {
             }
         }
         Join.setOnClickListener{
+            code = "null";
+            codeFound = false
+            checkTemp = true
+            keyValue= "null"
             code = GameCode.text.toString()
             Create.visibility = View.GONE
             Join.visibility = View.GONE
@@ -95,27 +106,21 @@ class CodeActivity : AppCompatActivity() {
                                     textView4.visibility = View.VISIBLE
                                     progressBar.visibility = View.GONE
                                 }
-                            } , 3000)
+                                else{
+                                    Create.visibility = View.VISIBLE
+                                    Join.visibility = View.VISIBLE
+                                    GameCode.visibility = View.VISIBLE
+                                    textView4.visibility = View.VISIBLE
+                                    progressBar.visibility = View.GONE
+                                    errorMsg("Invalid Code")
+                                }
+                            } , 2000)
 
 
                     }
 
 
                 })
-                Handler().postDelayed({
-                    if(codeFound == false){
-                        Create.visibility = View.VISIBLE
-                        Join.visibility = View.VISIBLE
-                        GameCode.visibility = View.VISIBLE
-                        textView4.visibility = View.VISIBLE
-                        progressBar.visibility = View.GONE
-                        errorMsg("Invalid Code")
-                    }
-                    else{
-                        codeFound = false
-                    }
-                },4000)
-
 
             }
             else
@@ -146,6 +151,7 @@ class CodeActivity : AppCompatActivity() {
             var value = it.getValue().toString()
             if(value == code)
             {
+                 keyValue = it.key.toString()
                 return true;
             }
         }
