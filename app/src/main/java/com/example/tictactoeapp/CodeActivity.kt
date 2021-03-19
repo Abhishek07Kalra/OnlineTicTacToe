@@ -81,12 +81,12 @@ class CodeActivity : AppCompatActivity() {
             checkTemp = true
             keyValue= "null"
             code = GameCode.text.toString()
-            Create.visibility = View.GONE
-            Join.visibility = View.GONE
-            GameCode.visibility = View.GONE
-            textView4.visibility = View.GONE
-            progressBar.visibility = View.VISIBLE
             if(code != "null" && code != null && code != "") {
+                Create.visibility = View.GONE
+                Join.visibility = View.GONE
+                GameCode.visibility = View.GONE
+                textView4.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
                 isCodeMaker = false;
                 FirebaseDatabase.getInstance().reference.child("codes").addValueEventListener(object:ValueEventListener{
                     override fun onCancelled(error: DatabaseError) {

@@ -16,7 +16,6 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_third_page.*
 import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
-
 import kotlinx.android.synthetic.main.activity_code.*
 var isMyMove = isCodeMaker;
 
